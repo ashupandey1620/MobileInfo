@@ -2,9 +2,13 @@ package com.example.mobileinfo;
 
 import static android.content.ContentValues.TAG;
 
+import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.Context;
+import android.graphics.Camera;
+import android.telephony.TelephonyManager;
 
 import android.content.pm.PackageManager;
 import android.graphics.ImageFormat;
@@ -36,7 +40,11 @@ import javax.microedition.khronos.egl.EGLConfig;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String manufacturer, modelName, modelNumber, mProcessorInfostr,apertureValue;
+
+
+
+
+    private String manufacturer, modelName, modelNumber, mProcessorInfostr;
     private long ram, storage;
     private int batteryLevel;
 
@@ -132,17 +140,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
         //imei
-        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
-            String imei = telephonyManager.getImei();
-            Log.i(TAG, "IMEI: " + imei);
-        }
 
 
+
+
+
+
+
+        //Sensors Data
 
 
     }
+
 
 }
