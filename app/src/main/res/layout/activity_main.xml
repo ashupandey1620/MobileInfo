@@ -1,112 +1,53 @@
-<?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:layout_height="match_parent">
 
     <TextView
-        android:id="@+id/manufacturer_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Manufacturer: "/>
-
-    <TextView
-        android:id="@+id/model_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Model: "/>
-
-    <TextView
-        android:id="@+id/ram_tv"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:text="RAM: "/>
-
-    <TextView
-        android:id="@+id/storage_tv"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:text="Storage: "/>
-
-    <TextView
-        android:id="@+id/battery_tv"
+        android:id="@+id/tv_manufacturer"
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Battery: "/>
+        android:text="Manufacturer: " />
 
     <TextView
-        android:id="@+id/android_version_tv"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Android Version: "/>
-
-    <TextView
-        android:id="@+id/camera_mp_tv"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:text="Camera MP: "/>
-
-    <TextView
-        android:id="@+id/camera_aperture_tv"
+        android:id="@+id/tv_model_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
-        android:text="Camera Aperture: "/>
+        android:text="Model Name: "
+     />
 
     <TextView
-        android:id="@+id/processor_tv"
+        android:id="@+id/tv_model_number"
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Model Number: "
+        />
+
+    <TextView
+        android:id="@+id/tv_ram"
         android:layout_width="wrap_content"
         android:textSize="20sp"
         android:layout_height="wrap_content"
-        android:text="Processor: "/>
+        android:text="RAM: "
+       />
 
     <TextView
-        android:id="@+id/gpu_tv"
+        android:id="@+id/tv_storage"
         android:layout_width="wrap_content"
         android:textSize="20sp"
         android:layout_height="wrap_content"
-        android:text="GPU: "/>
+        android:text="Storage: "
+        />
 
     <TextView
-        android:id="@+id/gps_tv"
+        android:id="@+id/tv_battery_level"
         android:layout_width="wrap_content"
         android:textSize="20sp"
         android:layout_height="wrap_content"
-        android:text="GPS: "/>
-
-    <TextView
-        android:id="@+id/gyroscope_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Gyroscope: "/>
-
-    <TextView
-        android:id="@+id/barometer_tv"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:text="Barometer: "/>
-
-    <TextView
-        android:id="@+id/accelerometer_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Accelerometer: "/>
-
-    <TextView
-        android:id="@+id/rotation_vector_tv"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:text="Rotation Vector: "/>
+        android:text="Battery Level: "
+  />
 
 </LinearLayout>
