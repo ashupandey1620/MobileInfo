@@ -3,51 +3,115 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+    <TextView
+
+        android:textSize="20sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manufacturer: "
+      />
+
     <TextView
         android:id="@+id/tv_manufacturer"
+        android:layout_marginStart="15dp"
         android:textSize="20sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Manufacturer: " />
-
-    <TextView
-        android:id="@+id/tv_model_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Model Name: "
-     />
-
-    <TextView
-        android:id="@+id/tv_model_number"
-        android:textSize="20sp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Model Number: "
         />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_ram"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:text="RAM: "
-       />
 
-    <TextView
-        android:id="@+id/tv_storage"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
-        android:layout_height="wrap_content"
-        android:text="Storage: "
-        />
 
-    <TextView
-        android:id="@+id/tv_battery_level"
-        android:layout_width="wrap_content"
-        android:textSize="20sp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Battery Level: "
-  />
+        android:orientation="horizontal"
+        >
+        <TextView
+
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Model Name: "
+            />
+        <TextView
+            android:layout_marginStart="15dp"
+            android:id="@+id/tv_model_name"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/tv_ram"
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="RAM: "
+            />
+
+
+        <TextView
+            android:layout_marginStart="15dp"
+            android:id="@+id/tv_ram"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="Storage: "
+            />
+
+        <TextView
+            android:id="@+id/tv_storage"
+            android:layout_marginStart="15dp"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="20sp"
+            android:layout_height="wrap_content"
+            android:text="Battery Level: "/>
+        <TextView
+            android:layout_marginStart="15dp"
+            android:id="@+id/tv_battery_level"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            />
+    </LinearLayout>
+
 
 </LinearLayout>

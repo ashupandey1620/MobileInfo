@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -18,11 +19,23 @@ public class MainActivity extends AppCompatActivity {
     private long ram, storage;
     private int batteryLevel;
 
+    private TextView mManufacturer;
+    private TextView mModel;
+    private TextView mRam;
+    private TextView mStorage;
+    private TextView mBatteryLevel;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mManufacturer = findViewById(R.id.tv_manufacturer);
+        mModel = findViewById(R.id.tv_model_name);
+        mRam = findViewById(R.id.tv_ram);
+        mStorage = findViewById(R.id.tv_storage);
+        mBatteryLevel = findViewById(R.id.tv_battery_level);
         // Retrieve device information
         getDeviceInfo();
     }
@@ -45,10 +58,19 @@ public class MainActivity extends AppCompatActivity {
 
         // Print device information
         System.out.println("Manufacturer: " + manufacturer);
+        mManufacturer.setText(manufacturer);
+
         System.out.println("Model Name: " + modelName);
-        System.out.println("Model Number: " + modelNumber);
-        System.out.println("RAM: " + ram + " bytes");
+        mModel.setText(modelName);
+
+       /** System.out.println("RAM: " + ram + " bytes");
+        mRam.setText((int) ram);
+
         System.out.println("Storage: " + storage + " bytes");
+        mStorage.setText((int) storage);
+
+        mBatteryLevel.setText(batteryLevel);
         System.out.println("Battery Level: " + batteryLevel + "%");
+        */
     }
 }
