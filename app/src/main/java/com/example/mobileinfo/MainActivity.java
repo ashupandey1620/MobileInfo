@@ -1,21 +1,42 @@
 package com.example.mobileinfo;
 
+import static android.content.ContentValues.TAG;
+
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+
+import android.content.pm.PackageManager;
+import android.graphics.ImageFormat;
+import android.hardware.camera2.CameraAccessException;
+import android.hardware.camera2.CameraCharacteristics;
+import android.hardware.camera2.CameraManager;
+import android.hardware.camera2.params.StreamConfigurationMap;
+import android.opengl.EGL14;
+import android.opengl.EGLContext;
+import android.opengl.EGLDisplay;
+import android.opengl.EGLSurface;
+import android.opengl.GLES20;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.DisplayMetrics;
-import android.view.Display;
-import android.view.WindowManager;
+
+import android.telephony.TelephonyManager;
+import android.util.Log;
+import android.util.Size;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+
+import java.io.File;
+import java.util.Arrays;
+
+import javax.microedition.khronos.egl.EGLConfig;
 
 public class MainActivity extends AppCompatActivity {
 
-    private String manufacturer, modelName, modelNumber;
+    private String manufacturer, modelName, modelNumber, mProcessorInfostr,apertureValue;
     private long ram, storage;
     private int batteryLevel;
 
@@ -24,6 +45,14 @@ public class MainActivity extends AppCompatActivity {
     private TextView mRam;
     private TextView mStorage;
     private TextView mBatteryLevel;
+
+    private TextView mVersion;
+    private TextView mCameraMP;
+    private TextView mCameraAperture;
+    private TextView mProcessorInfo;
+    private TextView mGPUInfo;
+    private TextView mIMEIInfo;
+
 
 
     @Override
@@ -36,6 +65,14 @@ public class MainActivity extends AppCompatActivity {
         mRam = findViewById(R.id.tv_ram);
         mStorage = findViewById(R.id.tv_storage);
         mBatteryLevel = findViewById(R.id.tv_battery_level);
+
+         mVersion = findViewById(R.id.tv_android_version);
+         mCameraMP=findViewById(R.id.tv_camera_mp);
+         mCameraAperture=findViewById(R.id.tv_camera_aperture);
+         mProcessorInfo=findViewById(R.id.tv_processor_info);
+         mGPUInfo=findViewById(R.id.tv_gpu_info);
+         mIMEIInfo=findViewById(R.id.tv_imei);
+
         // Retrieve device information
         getDeviceInfo();
     }
@@ -47,8 +84,12 @@ public class MainActivity extends AppCompatActivity {
         modelNumber = Build.DEVICE;
 
         // Get device RAM and storage
-        ram = Runtime.getRuntime().totalMemory();
-        storage = android.os.Environment.getExternalStorageDirectory().getTotalSpace();
+        long ramBytes = Runtime.getRuntime().totalMemory();
+        double ramGB = Math.round(ramBytes / (1024.0 * 1024.0 * 1024.0) * 100.0) / 100.0;
+
+        long storageBytes = new File(getFilesDir().getAbsolutePath()).getTotalSpace();
+        double storageGB = Math.round(storageBytes / (1024.0 * 1024.0 * 1024.0) * 100.0) / 100.0;
+
 
         // Get battery level
         Intent intent = this.registerReceiver(null, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
@@ -63,14 +104,45 @@ public class MainActivity extends AppCompatActivity {
         System.out.println("Model Name: " + modelName);
         mModel.setText(modelName);
 
-       /** System.out.println("RAM: " + ram + " bytes");
-        mRam.setText((int) ram);
+        System.out.println("RAM: " + ram + " bytes");
+        mRam.setText(ramGB + " GB");
 
         System.out.println("Storage: " + storage + " bytes");
-        mStorage.setText((int) storage);
+        mStorage.setText(storageGB + " GB");
 
-        mBatteryLevel.setText(batteryLevel);
+        mBatteryLevel.setText(batteryLevel + "%");
         System.out.println("Battery Level: " + batteryLevel + "%");
-        */
+
+        mVersion.setText("Android " + Build.VERSION.RELEASE);
+
+// Get the camera megapixel and aperture
+
+
+
+
+
+        //processor
+        mProcessorInfostr = Build.HARDWARE + " " + Build.BRAND + " " + Build.MODEL;
+        Log.i(TAG, mProcessorInfostr);
+        mProcessorInfo.setText(mProcessorInfostr);
+
+
+        //Gpu
+
+
+
+
+
+        //imei
+        TelephonyManager telephonyManager = (TelephonyManager) getSystemService(Context.TELEPHONY_SERVICE);
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) == PackageManager.PERMISSION_GRANTED) {
+            String imei = telephonyManager.getImei();
+            Log.i(TAG, "IMEI: " + imei);
+        }
+
+
+
+
     }
+
 }
