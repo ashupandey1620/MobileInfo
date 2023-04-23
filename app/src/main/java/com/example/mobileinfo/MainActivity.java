@@ -22,7 +22,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-
+    private MainPresenter presenter;
     private String manufacturer, modelName, modelNumber, mProcessorInfostr;
     private long ram, storage;
     private int batteryLevel;
@@ -41,17 +41,26 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView mIMEIInfo;
     private TextView mProximity;
 
- //   private TextView mCameraMP;
-   // private TextView mCameraAperture;
-  //  private TextView mProcessorInfo;
-  //  private TextView mGPUInfo;
-  //  private TextView mIMEIInfo;
+    @BindView(R.id.orientation_x_axis) TextView textOrientationXAxis;
+    @BindView(R.id.orientation_y_axis) TextView textOrientationYAxis;
+    @BindView(R.id.orientation_z_axis) TextView textOrientationZAxis;
+    @BindView(R.id.gyro_x_axis) TextView textGyroXAxis;
+    @BindView(R.id.gyro_y_axis) TextView textGyroYAxis;
+    @BindView(R.id.gyro_z_axis) TextView textGyroZAxis;
+    @BindView(R.id.acceleration_x_axis) TextView textAccelerationXAxis;
+    @BindView(R.id.acceleration_y_axis) TextView textAccelerationYAxis;
+    @BindView(R.id.acceleration_z_axis) TextView textAccelerationZAxis;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        presenter = new MainPresenter((MainContract.View) this, sensorManager);
 
         mManufacturer = findViewById(R.id.tv_manufacturer);
         mModel = findViewById(R.id.tv_model_name);
@@ -110,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         mVersion.setText("Android " + Build.VERSION.RELEASE);
 
-// Get the camera megapixel and aperture
+        // Get the camera megapixel and aperture
 
 
         //processor
@@ -127,34 +136,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
         //Sensors Data
         SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        //List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
-
-
-        if(sensorManager!=null)
-        {
-           Sensor proxySensor = SensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
-            if(proxySensor!=null)
-            {
-                sensorManager.registerListener(this, proxySensor, SensorManager.SENSOR_DELAY_NORMAL);
-            }
-
-        }
 
 
 
-       /** for (Sensor sensor : sensors) {
-            if (sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
-                sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-            } else if (sensor.getType() == Sensor.TYPE_GYROSCOPE) {
-                sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-            }  else if (sensor.getType() == Sensor.TYPE_ROTATION_VECTOR) {
-                sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-            } else if (sensor.getType() == Sensor.TYPE_PROXIMITY) {
-                sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-            } else if (sensor.getType() == Sensor.TYPE_LIGHT) {
-                sensorManager.registerListener(sensorEventListener, sensor, SensorManager.SENSOR_DELAY_NORMAL);
-            }
-        }*/
+
 
 
     }
@@ -173,5 +158,35 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
+    }
+
+    public void updateOrientationSensorDataChanged(float xAngle, float yAngle, float zAngle) {
+        textOrientationXAxis.setText(String.valueOf(xAngle));
+        textOrientationYAxis.setText(String.valueOf(yAngle));
+        textOrientationZAxis.setText(String.valueOf(zAngle));
+    }
+
+
+    public void updateGyroSensorDataChanged(float xRotationRate, float yRotationRate, float zRotationRate) {
+        textGyroXAxis.setText(String.valueOf(xRotationRate));
+        textGyroYAxis.setText(String.valueOf(yRotationRate));
+        textGyroZAxis.setText(String.valueOf(zRotationRate));
+    }
+
+
+    public void updateAccelerationSensorDataChanged(float xAcceleration, float yAcceleration, float zAcceleration) {
+        textAccelerationXAxis.setText(String.valueOf(xAcceleration));
+        textAccelerationYAxis.setText(String.valueOf(yAcceleration));
+        textAccelerationZAxis.setText(String.valueOf(zAcceleration));
+    }
+    protected void onResume() {
+        super.onResume();
+        presenter.registerSensorsListeners();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        presenter.unregisterSensorsListeners();
     }
 }
