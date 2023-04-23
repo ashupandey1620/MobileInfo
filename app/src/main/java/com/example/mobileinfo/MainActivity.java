@@ -12,6 +12,7 @@ import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -73,10 +74,16 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         mGPUInfo = findViewById(R.id.tv_gpu_info);
         mIMEIInfo = findViewById(R.id.tv_imei);
 
-        mProximity = findViewById(R.id.tv_proximity);
 
 
 
+        mCameraButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, CameraDetailsActivity.class);
+                startActivity(intent);
+            }
+        });
         getDeviceInfo();
     }
     private  void getDeviceInfo() {

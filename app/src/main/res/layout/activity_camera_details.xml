@@ -6,4 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".CameraDetailsActivity">
 
+    <TextView
+        android:id="@+id/camera_details_textview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Camera Details:"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
