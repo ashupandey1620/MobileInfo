@@ -43,7 +43,7 @@ import java.util.List;
 
 import javax.microedition.khronos.egl.EGLConfig;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
 
     private String manufacturer, modelName, modelNumber, mProcessorInfostr;
@@ -141,8 +141,18 @@ public class MainActivity extends AppCompatActivity {
 
         //Sensors Data
         SensorManager sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
+        //List<Sensor> sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
 
+
+        if(sensorManager!=null)
+        {
+           Sensor proxySensor = SensorManager.getDefaultSensor(Sensor.TYPE_PROXIMITY);
+            if(proxySensor!=null)
+            {
+                sensorManager.registerListener(this, proxySensor, SensorManager.SENSOR_DELAY_NORMAL);
+            }
+
+        }
 
 
 
@@ -163,39 +173,15 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private final SensorEventListener sensorEventListener = new SensorEventListener() {
-        @Override
-        public void onSensorChanged(SensorEvent sensorEvent) {
-            switch (sensorEvent.sensor.getType()) {
-                case Sensor.TYPE_ACCELEROMETER:
-                    float[] valuesAcc = sensorEvent.values;
-                    Log.i(TAG, "Accelerometer: X = " + valuesAcc[0] + ", Y = " + valuesAcc[1] + ", Z = " + valuesAcc[2]);
-                    break;
-                case Sensor.TYPE_GYROSCOPE:
-                    float[] valuesGyro = sensorEvent.values;
-                    Log.i(TAG, "Gyroscope: X = " + valuesGyro[0] + ", Y = " + valuesGyro[1] + ", Z = " + valuesGyro[2]);
-                    break;
-                case Sensor.TYPE_ROTATION_VECTOR:
-                    float[] valuesRot = sensorEvent.values;
-                    Log.i(TAG, "Rotation Vector: X = " + valuesRot[0] + ", Y = " + valuesRot[1] + ", Z = " + valuesRot[2]);
-                    break;
-                case Sensor.TYPE_PROXIMITY:
-                    float valueProx = sensorEvent.values[0];
-                    Log.i(TAG, "Proximity: " + valueProx);
-                    break;
-                case Sensor.TYPE_LIGHT:
-                    float valueLight = sensorEvent.values[0];
-                    Log.i(TAG, "Ambient Light: " + valueLight);
-                    break;
-
-            }
 
 
-        }
+    @Override
+    public void onSensorChanged(SensorEvent event) {
 
-        @Override
-        public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
 
-        }
-    };
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+
+    }
 }
