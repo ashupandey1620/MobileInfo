@@ -3,10 +3,6 @@ package com.example.mobileinfo;
 public interface MainContract {
 
     interface View {
-
-        void updateOrientationSensorDataChanged(float xAngle,
-                                                float yAngle,
-                                                float zAngle);
         void updateGyroSensorDataChanged(float xRotationRate,
                                          float yRotationRate,
                                          float zRotationRate);

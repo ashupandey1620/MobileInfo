@@ -296,10 +296,6 @@
         android:padding="16dp">
 
         <include
-            android:id="@+id/layout_content_orientation"
-            layout="@layout/content_orientation" />
-
-        <include
             android:id="@+id/layout_content_gyroscope"
             layout="@layout/content_gyroscope"
             android:layout_width="match_parent"
@@ -313,4 +309,5 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp" />
     </LinearLayout>
+
 </LinearLayout>

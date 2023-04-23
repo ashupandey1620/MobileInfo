@@ -22,7 +22,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
-    private MainPresenter presenter;
+
     private String manufacturer, modelName, modelNumber, mProcessorInfostr;
     private long ram, storage;
     private int batteryLevel;
@@ -41,9 +41,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView mIMEIInfo;
     private TextView mProximity;
 
-    @BindView(R.id.orientation_x_axis) TextView textOrientationXAxis;
-    @BindView(R.id.orientation_y_axis) TextView textOrientationYAxis;
-    @BindView(R.id.orientation_z_axis) TextView textOrientationZAxis;
+
     @BindView(R.id.gyro_x_axis) TextView textGyroXAxis;
     @BindView(R.id.gyro_y_axis) TextView textGyroYAxis;
     @BindView(R.id.gyro_z_axis) TextView textGyroZAxis;
@@ -52,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @BindView(R.id.acceleration_z_axis) TextView textAccelerationZAxis;
 
 
+
+    private MainPresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,11 +160,6 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     }
 
-    public void updateOrientationSensorDataChanged(float xAngle, float yAngle, float zAngle) {
-        textOrientationXAxis.setText(String.valueOf(xAngle));
-        textOrientationYAxis.setText(String.valueOf(yAngle));
-        textOrientationZAxis.setText(String.valueOf(zAngle));
-    }
 
 
     public void updateGyroSensorDataChanged(float xRotationRate, float yRotationRate, float zRotationRate) {
