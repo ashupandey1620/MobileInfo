@@ -248,43 +248,7 @@
             />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:textSize="20sp"
-            android:layout_height="wrap_content"
-            android:text="Gyroscope: "/>
-        <TextView
-            android:layout_marginStart="15dp"
-            android:id="@+id/tv_gyroscope"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:textSize="20sp"
-            android:layout_height="wrap_content"
-            android:text="Accelerometer: "/>
-        <TextView
-            android:layout_marginStart="15dp"
-            android:id="@+id/tv_Accelerometer"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -323,5 +287,30 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <include
+            android:id="@+id/layout_content_orientation"
+            layout="@layout/content_orientation" />
+
+        <include
+            android:id="@+id/layout_content_gyroscope"
+            layout="@layout/content_gyroscope"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
+
+        <include
+            android:id="@+id/layout_content_accelerometer"
+            layout="@layout/content_accelerometer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp" />
     </LinearLayout>
 </LinearLayout>

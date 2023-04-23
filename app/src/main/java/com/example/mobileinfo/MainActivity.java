@@ -2,46 +2,23 @@ package com.example.mobileinfo;
 
 import static android.content.ContentValues.TAG;
 
-import android.accessibilityservice.AccessibilityService;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.Context;
-import android.graphics.Camera;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.telephony.TelephonyManager;
-
-import android.content.pm.PackageManager;
-import android.graphics.ImageFormat;
-import android.hardware.camera2.CameraAccessException;
-import android.hardware.camera2.CameraCharacteristics;
-import android.hardware.camera2.CameraManager;
-import android.hardware.camera2.params.StreamConfigurationMap;
-import android.opengl.EGL14;
-import android.opengl.EGLContext;
-import android.opengl.EGLDisplay;
-import android.opengl.EGLSurface;
-import android.opengl.GLES20;
 import android.os.BatteryManager;
 import android.os.Build;
 import android.os.Bundle;
-
-import android.telephony.TelephonyManager;
 import android.util.Log;
-import android.util.Size;
 import android.widget.TextView;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.List;
-
-import javax.microedition.khronos.egl.EGLConfig;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -62,6 +39,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private TextView mProcessorInfo;
     private TextView mGPUInfo;
     private TextView mIMEIInfo;
+    private TextView mProximity;
+
+ //   private TextView mCameraMP;
+   // private TextView mCameraAperture;
+  //  private TextView mProcessorInfo;
+  //  private TextView mGPUInfo;
+  //  private TextView mIMEIInfo;
 
 
     @Override
@@ -82,11 +66,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         mGPUInfo = findViewById(R.id.tv_gpu_info);
         mIMEIInfo = findViewById(R.id.tv_imei);
 
+        mProximity = findViewById(R.id.tv_proximity);
+
         // Retrieve device information
         getDeviceInfo();
     }
 
-    private void getDeviceInfo() {
+    private  void getDeviceInfo() {
         // Get device manufacturer, model name, and model number
         manufacturer = Build.MANUFACTURER;
         modelName = Build.MODEL;
@@ -177,6 +163,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+
+        if(event.sensor.getType()==Sensor.TYPE_PROXIMITY){
+            ((TextView)findViewById(R.id.tv_proximity)).setText((""+ event.values[0]));
+        }
 
     }
 
