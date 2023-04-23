@@ -38,11 +38,9 @@ public class CameraDetailsActivity extends AppCompatActivity {
         // Get the camera megapixels
         int megapixels = getCameraMegapixels(params);
 
-        // Get the camera aperture
-
 
         // Display the camera details
-        cameraDetailsTextView.setText("Megapixels: " + megapixels );
+        cameraDetailsTextView.setText("Megapixels: " + megapixels);
 
         // Release the camera instance
         camera.release();
