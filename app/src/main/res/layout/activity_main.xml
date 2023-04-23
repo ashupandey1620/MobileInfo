@@ -122,10 +122,13 @@
             android:layout_width="wrap_content"
             android:textSize="20sp"
             android:layout_height="wrap_content"
-            android:text="Camera MP: "/>
-        <TextView
+            android:text="Camera : "/>
+        <Button
+            android:text="Details"
+            android:padding="10dp"
+            android:textAllCaps="false"
             android:layout_marginStart="15dp"
-            android:id="@+id/tv_camera_mp"
+            android:id="@+id/button_camera_mp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -153,24 +156,6 @@
     </LinearLayout>
 
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:textSize="20sp"
-            android:layout_height="wrap_content"
-            android:text="Camera Aperture: "/>
-        <TextView
-            android:layout_marginStart="15dp"
-            android:id="@+id/tv_camera_aperture"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
